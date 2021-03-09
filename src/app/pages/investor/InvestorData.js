@@ -93,7 +93,7 @@ function InvestorData(props) {
           <h2>CrunchBase Data</h2>
         </Col>
         <Col xs={6}>
-          <h2>Replacement Data</h2>
+          <h2>Data To Save</h2>
         </Col>
       </Row>
       <Form
