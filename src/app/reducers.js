@@ -90,6 +90,7 @@ const defaults = {
   post_AirTable_status: '',
   get_CBInvestor_status: '',
   investor: {},
+  toSave: {},
   searchingFor: '',
 };
 
@@ -125,6 +126,7 @@ export default function rootReducer(state = defaults, action) {
       return {
         ...state,
         investor: parseInvestor(action.data),
+        toSave: parseInvestor(action.data),
         get_CBInvestor_status: 'succeeded',
       };
     case types.CBDATA_GET_INVESTOR_FAILED: return {
@@ -135,6 +137,13 @@ export default function rootReducer(state = defaults, action) {
       ...state,
       get_CBInvestor_status: '',
     };
+    case types.TOSAVE_DATA_SET: return {
+      ...state,
+      toSave: {
+        ...state.toSave,
+        ...action.data,
+      },
+    }
     default: return state;
   }
 }

@@ -5,24 +5,34 @@ import {
   put,
   takeEvery,
 } from 'redux-saga/effects';
-import { toQueryString, trackErr } from './utils';
+import { toQueryString } from './utils';
 import * as types from './actionTypes';
 import { field_ids } from '../constants';
 
 function postInvestor(params = {}) {
+  console.log(params);
+  const parsedParams = {};
+  Object.keys(params).forEach(k => {
+    if (Array.isArray(params[k])) {
+      parsedParams[k] = params[k].join();
+    } else {
+      parsedParams[k] = params[k];
+    }
+  });
   const data = {
     records: [
       {
-        fields: { ...params },
+        fields: { ...parsedParams },
       },
     ],
     typecast: true,
   };
+  console.log(data);
   return axios({
     method: 'post',
     url: 'https://api.airtable.com/v0/appUJz2H2nGD8Ldyc/upworker_added',
     headers: {
-      Authorization: `Bearer ${process.env.AIRTABLE_APIKEY}`,
+      Authorization: `Bearer ${process.env.REACT_APP_AIRTABLE_APIKEY}`,
       'Content-Type': 'application/json',
     },
     data,
@@ -35,13 +45,11 @@ function* workPostInvestor(action) {
     const results = yield call(postInvestor, params);
     // catch airtable errors
     if (results.data.error) {
-      trackErr(results.data.error);
       yield put({ type: types.AIRTABLE_POST_INVESTOR_FAILED, error: results.data.error });
     } else {
       yield put({ type: types.AIRTABLE_POST_INVESTOR_SUCCEEDED });
     }
   } catch (error) {
-    trackErr(error);
     yield put({ type: types.AIRTABLE_POST_INVESTOR_FAILED, error });
   }
 }

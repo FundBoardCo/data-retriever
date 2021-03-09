@@ -7,7 +7,7 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
-import Investor from './app/pages/Investor';
+import Investor from './app/pages/investor/Investor';
 
 // import common icons so they're accessible later.
 library.add(

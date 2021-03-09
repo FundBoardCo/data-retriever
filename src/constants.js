@@ -1,5 +1,3 @@
-import {average, median} from "./app/utils";
-
 export const field_ids = [
   'description',
   'image_id',
