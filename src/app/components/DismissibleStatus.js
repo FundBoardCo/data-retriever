@@ -10,7 +10,8 @@ export default function DAlert(props) {
     message,
     statusPrefix,
     status,
-    dissmissAction,
+    dismissible = true,
+    dismissAction,
     dismissParams,
     className,
     show = true,
@@ -30,9 +31,8 @@ export default function DAlert(props) {
   });
 
   const onClickClose = () => {
-    window.heap.track('DismissStatus-close', { status, dissmissAction });
-    if (dissmissAction) {
-      dissmiss(dissmissAction, dismissParams);
+    if (dismissAction) {
+      dissmiss(dismissAction, dismissParams);
     }
   };
 
@@ -42,8 +42,8 @@ export default function DAlert(props) {
         variant={variant}
         className={className}
         onClose={onClickClose}
-        dismissible
-        data-track={`DismissStatus-${status}-${dissmissAction}`}
+        dismissible={dismissible}
+        data-track={`DismissStatus-${status}-${dismissAction}`}
       >
         {title && (
           <Alert.Heading>{title}</Alert.Heading>
@@ -63,7 +63,7 @@ DAlert.defaultProps = {
   message: '',
   statusPrefix: '',
   status: '',
-  dissmissAction: '',
+  dismissAction: '',
   dismissParams: {},
   className: '',
   show: true,
@@ -76,7 +76,7 @@ DAlert.propTypes = {
   message: PropTypes.string,
   statusPrefix: PropTypes.string,
   status: PropTypes.string,
-  dissmissAction: PropTypes.string,
+  dismissAction: PropTypes.string,
   dismissParams: PropTypes.shape({
     properties: PropTypes.objectOf(
       PropTypes.oneOfType([

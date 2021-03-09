@@ -326,15 +326,18 @@ html#ov body {
     font-weight: 400;
   }
 
-  .txs-3 {
+  .txs-3,
+  input.tx-3 {
     font-size: $tx;
   }
 
-  .txs-2 {
+  .txs-2,
+  input.txs-2 {
     font-size: $txMd;
   }
 
-  .txs-1 {
+  .txs-1,
+  input.txs-1 {
     font-size: $txSm;
   }
 
