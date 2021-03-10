@@ -63,7 +63,7 @@ function getCBInvestor(params = {}) {
   const { entity_id } = getParams;
   delete getParams.entity_id;
 
-  return axios.get(`https://api.crunchbase.com/api/v4/entities/people/${entity_id}?${toQueryString(params)}`);
+  return axios.get(`/cb/entities/people${entity_id}?${toQueryString(params)}`);
 }
 
 function* workGetCBInvestor(action) {
