@@ -63,13 +63,11 @@ function getCBInvestor(params = {}) {
   const { entity_id } = getParams;
   delete getParams.entity_id;
 
-  return axios.get(`/cors-proxy/https://api.crunchbase.com/api/v4//cb/api/v4/entities/people/${entity_id}?${toQueryString(params)}`);
+  return axios.get(`/cb_get_person/${entity_id}?${toQueryString(params)}`);
 }
 
 function* workGetCBInvestor(action) {
   const { params } = action;
-  params.user_key = process.env.REACT_APP_CB_APIKEY;
-  console.log(process.env.REACT_APP_CB_APIKEY);
   params.entity_id = params.permalink;
   delete params.permalink;
   params.field_ids = field_ids.join();

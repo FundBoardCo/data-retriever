@@ -1,5 +1,5 @@
 {
-  "name": "cb-compare",
+  "name": "data-retriever",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -19,6 +19,7 @@
     "fibers": "^5.0.0",
     "jquery": "^3.4.1",
     "moment": "^2.27.0",
+    "node-fetch": "^2.6.1",
     "node-sass": "^4.13.1",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
@@ -32,8 +33,12 @@
     "uuid": "^8.3.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npm-run-all --parallel start:app start:server",
+    "start:app": "react-scripts start",
+    "start:server": "netlify-lambda serve src/lambda",
+    "build": "npm-run-all --parallel build:**",
+    "build:app": "CI= react-scripts build",
+    "build:functions": "netlify-lambda build src/lambda",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -51,5 +56,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "netlify-lambda": "^2.0.1",
+    "npm-run-all": "^4.1.5"
+  },
+  "proxy": "http://localhost:9000/"
 }
