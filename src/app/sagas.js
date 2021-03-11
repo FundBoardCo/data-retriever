@@ -63,7 +63,7 @@ function getCBInvestor(params = {}) {
   const { entity_id } = getParams;
   delete getParams.entity_id;
 
-  return axios.get(`/cb_get_person/${entity_id}?${toQueryString(params)}`);
+  return axios.get(`/.netlify/functions/cb_get_person/${entity_id}?${toQueryString(params)}`);
 }
 
 function* workGetCBInvestor(action) {

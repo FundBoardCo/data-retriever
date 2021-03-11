@@ -21,7 +21,7 @@ function App() {
         <a href="/" className="navBrand">
           <img className="navLogo" src={Logo} alt="FundBoard Logo" />
           <span className="navName">FundBoard</span>
-          <span className="navVersion">Investor Data Tool Alpha 0.1</span>
+          <span className="navVersion">Investor Data Tool Alpha 0.11</span>
         </a>
       </Navbar>
       <main id="Main">
