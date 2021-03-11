@@ -7,6 +7,3 @@ from = "/cb/*"
 to = "https://api.crunchbase.com/api/v4/:splat"
 status = 200
 force = true
-[redirects.headers]
-X-From = "Netlify"
-X-cb-user-key = "4d8499e4a0a5c747455ef1aeffdfc1ac"
