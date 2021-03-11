@@ -1,2 +1,2 @@
 /*    /index.html   200
-/cb/*  https://api.crunchbase.com/api/v4/:splat  200
+/cb/*  https://api.crunchbase.com/:splat  200
