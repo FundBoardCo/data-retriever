@@ -64,16 +64,16 @@ function parseInvestor(data) {
 
   return {
     crunchbase: `https://www.crunchbase.com/person/${properties.permalink}`,
-    name: properties.name,
-    source: properties.source,
+    name: properties.name || '',
+    source: properties.source || '',
     image_url,
-    primary_job_title: properties.primary_job_title,
-    description: properties.description,
+    primary_job_title: properties.primary_job_title || '',
+    description: properties.description || '',
     location_city,
     location_state,
     invested_locations: [], // TODO: add a way to get this
     location_country_outside_usa,
-    primary_organization_name: org.name,
+    primary_organization_name: org.name || '',
     primary_organization_url: `https://www.crunchbase.com/organization/${org.permalink}`,
     linkedin: (properties.linkedin && properties.linkedin.value) || '',
     twitter: (properties.twitter && properties.twitter.value) || '',
@@ -122,6 +122,7 @@ export default function rootReducer(state = defaults, action) {
     case types.CBDATA_GET_INVESTOR_SUBMITTED: return {
       ...state,
       get_CBInvestor_status: 'pending',
+      investor: {},
     };
     case types.CBDATA_GET_INVESTOR_SUCCEEDED:
       return {
