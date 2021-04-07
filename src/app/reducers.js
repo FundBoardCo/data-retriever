@@ -64,6 +64,7 @@ function parseInvestor(data) {
 
   return {
     crunchbase: `https://www.crunchbase.com/person/${properties.permalink}`,
+    uuid: getSafeVar(() => properties.identifier.uuid, ''),
     name: properties.name || '',
     source: properties.source || '',
     source_name: properties.source_name || '',
