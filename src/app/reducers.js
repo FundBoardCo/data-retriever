@@ -66,6 +66,7 @@ function parseInvestor(data) {
     crunchbase: `https://www.crunchbase.com/person/${properties.permalink}`,
     name: properties.name || '',
     source: properties.source || '',
+    source_name: properties.source_name || '',
     image_url,
     primary_job_title: properties.primary_job_title || '',
     description: properties.description || '',
