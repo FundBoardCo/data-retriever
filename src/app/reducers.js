@@ -92,9 +92,12 @@ function parseInvestor(data) {
 const defaults = {
   post_AirTable_status: '',
   get_CBInvestor_status: '',
+  get_ATInvestors_status: '',
+  get_UUIDS_status: '',
   investor: {},
   toSave: {},
   searchingFor: '',
+  ATInvestors: [],
 };
 
 export default function rootReducer(state = defaults, action) {
@@ -147,6 +150,43 @@ export default function rootReducer(state = defaults, action) {
         ...state.toSave,
         ...action.data,
       },
+    }
+    case types.AIRTABLE_GET_INVESTORS_REQUESTED: return {
+      ...state,
+      get_ATInvestors_status: 'pending',
+      ATInvestors: [],
+    }
+    case types.AIRTABLE_GET_INVESTORS_SUCCEEDED: return {
+      ...state,
+      get_ATInvestors_status: 'succeeded',
+      ATInvestors: [
+        ...state.ATInvestors,
+        ...action.data.records,
+      ],
+    }
+    case types.AIRTABLE_GET_INVESTORS_FAILED: return {
+      ...state,
+      get_ATInvestors_status: processErr(action.error),
+    }
+    case types.AIRTABLE_GET_INVESTORS_DISMISSED: return {
+      ...state,
+      get_ATInvestors_status: '',
+    }
+    case types.CBDATA_GET_INVESTORUUIDS_SUBMITTED: return {
+      ...state,
+      get_UUIDS_status: 'pending',
+    }
+    case types.CBDATA_GET_INVESTORUUIDS_SUCCEEDED: return {
+      ...state,
+      get_UUIDS_status: 'succeeded',
+    }
+    case types.CBDATA_GET_INVESTORUUIDS_FAILED: return {
+      ...state,
+      get_UUIDS_status: processErr(action.error),
+    }
+    case types.CBDATA_GET_INVESTORUUIDS_DISMISSED: return {
+      ...state,
+      get_UUIDS_status: '',
     }
     default: return state;
   }

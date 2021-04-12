@@ -41,7 +41,8 @@ export function capitalizeFirstLetter(str) {
 const format = (k, v) => (v ? `${k}=${encodeURIComponent(v)}` : '');
 
 // eslint-disable-next-line max-len
-export const toQueryString = obj => [].concat(...Object.entries(obj).map(([k, v]) => (Array.isArray(v) ? v.map(arr => toQueryString({ [k]: arr })) : format(k, v))))
+export const toQueryString = obj => []
+  .concat(...Object.entries(obj).map(([k, v]) => (Array.isArray(v) ? v.map(arr => toQueryString({ [k]: arr })) : format(k, v))))
   .filter(x => x)
   .join('&');
 

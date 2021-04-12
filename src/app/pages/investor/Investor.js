@@ -17,6 +17,7 @@ function Investor() {
   const getInvestorStatus = useSelector(state => state.get_CBInvestor_status);
   const searchingFor = useSelector(state => state.searchingFor);
   const investor = useSelector(state => state.investor);
+  const getATIvestorsStatus = useSelector(state => state.get_ATInvestors_status);
   console.log(investor);
 
   const dispatch = useDispatch();
@@ -43,6 +44,13 @@ function Investor() {
       submitSearch();
     }
   }
+/*
+  const onGetATInvestors = () => {
+    dispatch({
+      type: types.AIRTABLE_GET_INVESTORS_REQUESTED,
+    });
+  }
+ */
 
   return (
     <div className="mb-5">
@@ -78,6 +86,10 @@ function Investor() {
             status={getInvestorStatus}
             statusPrefix="Retrieving Investor"
             dismissible={false}
+          />
+          <DismissibleStatus
+            status={getATIvestorsStatus}
+            statusPrefix="Retrieving All Investors from AirTable"
           />
         </Col>
       </Row>
